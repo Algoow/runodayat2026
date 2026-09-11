@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RUNod Ayat Charity Race 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Continuous Auto-Scroll Animation for Sponsors */
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: scroll-left 25s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Sticky Navigation -->
+  <nav class="border-b border-slate-800 bg-slate-950/90 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="#" class="flex items-center">
+        <img 
+          src="title_logo.png" 
+          alt="RUNod Ayat 2026" 
+          class="h-12 md:h-16 w-auto object-contain transition-transform duration-200 hover:scale-105"
+        />
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center space-x-6 text-sm font-semibold">
+        <a href="#categories" class="text-slate-300 hover:text-white transition">2026 Race Categories & Kits</a>
+        <a href="#stats-2025" class="text-slate-300 hover:text-white transition">2025 Recap</a>
+        <a href="#proceeds" class="text-slate-300 hover:text-white transition">Proceeds & Mission</a>
+        <a href="#verify" class="text-slate-300 hover:text-white transition">Verify Bib</a>
+        <a href="runod.html" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-xl font-bold transition shadow-lg shadow-blue-600/20">Register Now</a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-slate-950 px-4 pt-3 pb-6 space-y-3 font-semibold text-sm">
+      <a href="#categories" class="block text-slate-300 hover:text-white py-1">2026 Race Categories & Kits</a>
+      <a href="#stats-2025" class="block text-slate-300 hover:text-white py-1">2025 Recap</a>
+      <a href="#proceeds" class="block text-slate-300 hover:text-white py-1">Proceeds & Mission</a>
+      <a href="#verify" class="block text-slate-300 hover:text-white py-1">Verify Bib</a>
+      <a href="runod.html" class="block text-center bg-blue-600 hover:bg-blue-500 text-white py-2.5 rounded-xl font-bold transition mt-2">Register Now</a>
+    </div>
+  </nav>
+
+  <!-- 1. HERO / HOME SECTION -->
+  <section id="home" class="max-w-6xl mx-auto px-4 py-20 text-center space-y-6">
+    <div class="flex flex-wrap justify-center gap-2">
+      <span class="bg-slate-900 text-slate-300 border border-slate-800 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest">
+        Driven by JCI Candon Gold Leaf
+      </span>
+      <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1">
+        🏆 Raniag Award Winner
+      </span>
+    </div>
+
+    <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight">
+      Run the Distance, Light the Future.<br><span class="text-blue-500">Continuing the Mission in 2026.</span>
+    </h1>
+    <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+      <strong>Share the Love: RUNod Ayat</strong> (Ilocano for <em>"To Give Love"</em>) <strong>Charity Race is back!</strong> <br> Thanks to our runners from 2025, proceeds directly fund <strong>Project SILAW</strong> that helps children in remote upland communities step away from manual charcoal work and into classroom desks.
+    </p>
+    
+    <div class="flex justify-center gap-4 pt-2">
+      <a href="runod.html" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3 rounded-xl shadow-lg shadow-blue-600/20 transition">
+        Register for 2026 Race
+      </a>
+      <a href="#categories" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-bold px-6 py-3 rounded-xl transition">
+        View Race Categories
+      </a>
+    </div>
+  </section>
+
+  <hr class="border-slate-800/80 max-w-6xl mx-auto">
+
+  <!-- 2. RACE CATEGORIES & KIT INCLUSIONS TABS -->
+  <section id="categories" class="max-w-6xl mx-auto px-4 py-16 space-y-8">
+    <div class="text-center max-w-2xl mx-auto space-y-3">
+      <span class="bg-slate-900 text-slate-400 border border-slate-800 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest">
+        Race Packages
+      </span>
+      <h2 class="text-3xl md:text-4xl font-black text-white">2026 Categories & Kit Inclusions</h2>
+      <p class="text-slate-400 text-sm">
+        Select a distance category to see what's included in your race kit.
+      </p>
+    </div>
+
+    <!-- Tab Selector Buttons -->
+    <div class="flex flex-wrap justify-center gap-2 border-b border-slate-800/80 pb-4">
+      <button onclick="switchCategory('3k')" id="tab-3k" class="cat-tab bg-blue-600 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition">
+        3K Fun Run
+      </button>
+      <button onclick="switchCategory('5k')" id="tab-5k" class="cat-tab bg-slate-900 hover:bg-slate-800 text-slate-300 font-bold px-5 py-2.5 rounded-xl text-sm border border-slate-800 transition">
+        5K Discovery
+      </button>
+      <button onclick="switchCategory('10k')" id="tab-10k" class="cat-tab bg-slate-900 hover:bg-slate-800 text-slate-300 font-bold px-5 py-2.5 rounded-xl text-sm border border-slate-800 transition">
+        10K Challenge
+      </button>
+      <button onclick="switchCategory('21k')" id="tab-21k" class="cat-tab bg-slate-900 hover:bg-slate-800 text-slate-300 font-bold px-5 py-2.5 rounded-xl text-sm border border-slate-800 transition">
+        21K Half Marathon
+      </button>
+    </div>
+
+    <!-- Category Content Display Panels -->
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl">
+      
+      <!-- 3K Content -->
+      <div id="content-3k" class="cat-content space-y-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-800 pb-4 gap-4">
+          <div>
+            <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Beginner & Family Friendly</span>
+            <h3 class="text-2xl font-black text-white">3K Fun Run</h3>
+          </div>
+          <div class="text-left md:text-right">
+            <span class="text-3xl font-black text-white">₱450</span>
+            <span class="block text-xs text-slate-400">Early Registration Fee</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-3">
+            <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wider">Race Kit Inclusions:</h4>
+            <ul class="space-y-2 text-sm text-slate-300">
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Official RUNod Ayat 2026 Event Singlet</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Official RUNod Ayat 2026 Finisher's Shirt</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Finisher's Commemorative Medal</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Hydration Station Snacks & Drinks</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Race Certificate of Completion</li>
+            </ul>
+          </div>
+          <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-2 flex flex-col justify-center">
+            <span class="text-xs font-bold text-amber-400 uppercase">Impact Highlight</span>
+            <p class="text-xs text-slate-300">
+              Your 3K registration directly provides <strong>1 full school supply kit</strong> (notebooks, pens, bag) to a student transitioning from charcoal labor in mountain sitios.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5K Content -->
+      <div id="content-5k" class="cat-content hidden space-y-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-800 pb-4 gap-4">
+          <div>
+            <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Fitness Enthusiasts</span>
+            <h3 class="text-2xl font-black text-white">5K Discovery Run</h3>
+          </div>
+          <div class="text-left md:text-right">
+            <span class="text-3xl font-black text-white">₱600</span>
+            <span class="block text-xs text-slate-400">Early Registration Fee</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-3">
+            <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wider">Race Kit Inclusions:</h4>
+            <ul class="space-y-2 text-sm text-slate-300">
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Official RUNod Ayat 2026 Event Singlet</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Official RUNod Ayat 2026 Finisher's Shirt</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Finisher's Commemorative Medal</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Hydration Station Snacks & Drinks</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Race Certificate of Completion</li>
+            </ul>
+          </div>
+          <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-2 flex flex-col justify-center">
+            <span class="text-xs font-bold text-amber-400 uppercase">Impact Highlight</span>
+            <p class="text-xs text-slate-300">
+              Your 5K entry covers <strong>1 month of educational modules and school materials</strong> for a student in off-grid upland communities.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10K Content -->
+      <div id="content-10k" class="cat-content hidden space-y-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-800 pb-4 gap-4">
+          <div>
+            <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Competitive Distance</span>
+            <h3 class="text-2xl font-black text-white">10K Challenge</h3>
+          </div>
+          <div class="text-left md:text-right">
+            <span class="text-3xl font-black text-white">₱850</span>
+            <span class="block text-xs text-slate-400">Early Registration Fee</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-3">
+            <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wider">Race Kit Inclusions:</h4>
+            <ul class="space-y-2 text-sm text-slate-300">
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Official RUNod Ayat 2026 Event Singlet</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Official RUNod Ayat 2026 Finisher's Shirt</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Finisher's Commemorative Medal</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Hydration Station Snacks & Drinks</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Race Certificate of Completion</li>
+            </ul>
+          </div>
+          <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-2 flex flex-col justify-center">
+            <span class="text-xs font-bold text-amber-400 uppercase">Impact Highlight</span>
+            <p class="text-xs text-slate-300">
+              Your 10K entry funds a <strong>solar-powered study lamp & classroom pack</strong> so highland children can study safely at home at night.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 21K Content -->
+      <div id="content-21k" class="cat-content hidden space-y-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-800 pb-4 gap-4">
+          <div>
+            <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Endurance Category</span>
+            <h3 class="text-2xl font-black text-white">21K Half Marathon</h3>
+          </div>
+          <div class="text-left md:text-right">
+            <span class="text-3xl font-black text-white">₱1,200</span>
+            <span class="block text-xs text-slate-400">Early Registration Fee</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-3">
+            <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wider">Race Kit Inclusions:</h4>
+            <ul class="space-y-2 text-sm text-slate-300">
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Official RUNod Ayat 2026 Event Singlet</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Official RUNod Ayat 2026 Finisher's Shirt</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Finisher's Commemorative Medal</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Hydration Station Snacks & Drinks</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400 font-bold">✓</span> Race Certificate of Completion</li>
+            </ul>
+          </div>
+          <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-2 flex flex-col justify-center">
+            <span class="text-xs font-bold text-amber-400 uppercase">Impact Highlight</span>
+            <p class="text-xs text-slate-300">
+              Your 21K entry fully funds <strong>a complete educational transformation pack</strong> for a child.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-4 text-center">
+        <a href="runod.html" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3 rounded-xl shadow-lg shadow-blue-600/20 transition">
+          Register Now!
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="border-slate-800/80 max-w-6xl mx-auto">
+
+  <!-- 3. 2025 RUNOD AYAT STATISTICS, RECAP PHOTOS & SPONSORS -->
+  <section id="stats-2025" class="max-w-6xl mx-auto px-4 py-16 space-y-12">
+    <div class="text-center max-w-2xl mx-auto space-y-3">
+      <span class="bg-slate-900 text-slate-400 border border-slate-800 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest">
+        Looking Back at RUNod Ayat 2025
+      </span>
+      <h2 class="text-3xl md:text-4xl font-black text-white">2025 Highlights & Race Recap</h2>
+      <p class="text-slate-400 text-sm">
+        See how our inaugural charity run transformed community support into direct action for mountain youth.
+      </p>
+    </div>
+
+    <!-- 2025 Recap Section -->
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <!-- Video Embed -->
+        <div class="w-full bg-slate-900 p-2 rounded-2xl border border-slate-800">
+          <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black flex items-center justify-center">
+            <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1857072834902052%2F&show_text=false&width=560&t=0" width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+          </div>
+        </div>
+
+        <!-- Metrics Grid -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl text-center space-y-2">
+            <span class="text-3xl md:text-4xl font-black text-blue-400">400+</span>
+            <span class="block text-xs font-bold text-slate-300 uppercase tracking-wider">Registered Runners</span>
+            <p class="text-[11px] text-slate-400">Community runners, advocates, and youth groups</p>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl text-center space-y-2">
+            <span class="text-3xl md:text-4xl font-black text-amber-400">120+</span>
+            <span class="block text-xs font-bold text-slate-300 uppercase tracking-wider">Children Reached</span>
+            <p class="text-[11px] text-slate-400">Provided transition kits & educational packages</p>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl text-center space-y-2">
+            <span class="text-3xl md:text-4xl font-black text-amber-400">3</span>
+            <span class="block text-xs font-bold text-slate-300 uppercase tracking-wider">Highland Sitio Visits</span>
+            <p class="text-[11px] text-slate-400">Remote mountainous beneficiaries covered</p>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl text-center space-y-2">
+            <span class="text-3xl md:text-4xl font-black text-blue-400">₱351,000</span>
+            <span class="block text-xs font-bold text-slate-300 uppercase tracking-wider">Income Generated</span>
+            <p class="text-[11px] text-slate-400">Supporting budget for local organization projects</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RUNod 2025 Recap Block -->
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl">
+      <div class="flex flex-col lg:flex-row">
+        <div class="lg:w-1/2 p-6 md:p-10 space-y-4 flex flex-col justify-center">
+          <span class="inline-block bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider w-fit">
+            The Mission Continues
+          </span>
+          <h3 class="text-3xl font-black text-white">Share the Love: RUNod Ayat Charity Race 2025</h3>
+          <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+            Spearheaded by <strong>JCI Candon Gold Leaf</strong>, led by <strong>2025 LO President <em>Atty. Michael Noblie A. Tindoc</em></strong> with Project Chairs <strong><em>Meteor V. Ordoña</em></strong> and <strong><em>Engr. Marvz G. Ramos</em></strong>, the <strong>Share the Love: RUNod Ayat Charity Race 2025</strong> merged health and wellness with meaningful social impact.
+          </p>
+          <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+            Proceeds from registration provided crucial learning kits and school supplies to children in remote areas. In <strong>RUNod Ayat 2026</strong>, we are expanding this educational lifeline to reach even more communities.
+          </p>
+        </div>
+
+        <div class="lg:w-1/2 relative min-h-[280px] lg:min-h-full">
+          <img src="Recap_Main.jpg" alt="Project SILAW Beneficiary Outreach" class="w-full h-full object-cover">
+          <span class="absolute top-4 right-4 bg-slate-950/90 text-amber-400 text-xs font-bold px-3 py-1 rounded-full border border-slate-800">
+            RUNod Ayat 2025 Recap
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Award Banner -->
+    <div class="bg-slate-900 border border-amber-500/30 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+      <div class="flex flex-col sm:flex-row items-center gap-6 w-full md:w-auto">
+        <div class="relative w-32 h-32 md:w-36 md:h-36 rounded-2xl border border-amber-500/40 overflow-hidden shrink-0 bg-slate-950 shadow-lg group">
+          <img src="Raniag.png" alt="Raniag Award Trophy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+          <span class="absolute bottom-1.5 left-1/2 -translate-x-1/2 bg-slate-950 text-amber-400 text-[9px] font-bold px-2 py-0.5 rounded-full border border-amber-500/30 whitespace-nowrap">
+            Raniag Trophy
+          </span>
+        </div>
+
+        <div class="space-y-2 text-center sm:text-left">
+          <span class="text-amber-400 text-xs font-bold uppercase tracking-widest">Award & Recognition Received</span>
+          <h3 class="text-2xl md:text-3xl font-black text-white">Raniag Award Winner</h3>
+          <p class="text-xs md:text-sm text-slate-300 max-w-xl">
+            Recognized for outstanding organizational impact as the <strong>Best Fundraising Program</strong> for community engagement, transparency, and resource generation through Project SILAW.
+          </p>
+        </div>
+      </div>
+
+      <div class="shrink-0 bg-slate-950 border border-slate-800 px-5 py-3 rounded-2xl text-center w-full md:w-auto">
+        <span class="block text-xs text-slate-400 font-semibold uppercase">Category</span>
+        <span class="text-sm font-bold text-amber-400">Best Fundraising Program</span>
+      </div>
+    </div>
+
+    <!-- 2025 Race Photo Grid -->
+    <div class="space-y-4">
+      <h4 class="text-center text-xs font-bold uppercase tracking-widest text-slate-400">Gratitude to all Runners</h4>
+      <h3 class="text-xl font-bold text-white text-center">2025 Race Day Moments</h3>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg group">
+          <div class="h-48 overflow-hidden">
+            <img src="recap_5.jpg" alt="2025 Start Line" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+          </div>
+          <div class="p-4 space-y-1">
+            <h4 class="font-bold text-white text-sm">Flag-Off at Dawn</h4>
+            <p class="text-xs text-slate-400">Over 400 runners gathered for the inaugural run for education.</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg group">
+          <div class="h-48 overflow-hidden">
+            <img src="recap_2.jpg" alt="Different Community" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+          </div>
+          <div class="p-4 space-y-1">
+            <h4 class="font-bold text-white text-sm">Building Community</h4>
+            <p class="text-xs text-slate-400">Different running communities share stories along the road.</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg group">
+          <div class="h-48 overflow-hidden">
+            <img src="reap_3.jpg" alt="Finishers Celebration" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+          </div>
+          <div class="p-4 space-y-1">
+            <h4 class="font-bold text-white text-sm">Youth Champions</h4>
+            <p class="text-xs text-slate-400">Celebrating milestones with custom finisher medals and pride.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg group">
+          <div class="h-48 overflow-hidden">
+            <img src="recap_6.jpg" alt="2025 End Line" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+          </div>
+          <div class="p-4 space-y-1">
+            <h4 class="font-bold text-white text-sm">Finish With a Smile</h4>
+            <p class="text-xs text-slate-400">Crossing the finish line with pride and joy.</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg group">
+          <div class="h-48 overflow-hidden">
+            <img src="recap_4.jpg" alt="Run with Purpose" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+          </div>
+          <div class="p-4 space-y-1">
+            <h4 class="font-bold text-white text-sm">Run With Purpose</h4>
+            <p class="text-xs text-slate-400">Running with a clear reason and dedicated purpose.</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg group">
+          <div class="h-48 overflow-hidden">
+            <img src="recap_1.jpg" alt="One Goal" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+          </div>
+          <div class="p-4 space-y-1">
+            <h4 class="font-bold text-white text-sm">Running as One</h4>
+            <p class="text-xs text-slate-400">Same goal. Same vision. Same motivation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sponsors Marquee -->
+    <div class="space-y-4 pt-4">
+      <div class="text-center space-y-1">
+        <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Gratitude to Our Partners</span>
+        <h3 class="text-xl font-bold text-white">2025 Official Sponsors & Partners</h3>
+      </div>
+
+      <div class="relative overflow-hidden w-full bg-slate-900/60 border border-slate-800 rounded-2xl py-6 backdrop-blur">
+        <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none"></div>
+
+        <div class="animate-marquee items-center gap-8 md:gap-12 px-4">
+          <!-- First Set of Sponsor Logos -->
+          <img src="sponsor/1.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/2.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/3.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/4.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/5.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/6.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/7.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/8.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/9.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/10.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+
+          <!-- Duplicate Set -->
+          <img src="sponsor/1.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/2.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/3.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/4.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/5.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/6.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/7.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/8.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/9.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+          <img src="sponsor/10.png" alt="Sponsor" class="h-28 w-auto object-contain rounded-lg border border-slate-800 bg-slate-950 p-3">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="border-slate-800/80 max-w-6xl mx-auto">
+
+  <!-- 4. PROCEEDS & PROJECT SILAW MISSION SECTION -->
+  <section id="proceeds" class="max-w-6xl mx-auto px-4 py-16 space-y-16">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <span class="bg-slate-900 text-slate-400 border border-slate-800 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest">
+        Purpose Driven Miles
+      </span>
+      <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight leading-tight">
+        Fueling Futures: <span class="text-blue-500">Your Stride, Their Story</span>
+      </h2>
+      <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+        Every step you take on race day transforms into an opportunity for children in remote mountain sitios. We believe no young mind should trade pencils for charcoal kilns. Here is how your entry turns movement into meaningful educational impact.
+      </p>
+    </div>
+
+    <!-- Project SILAW Beneficiary Story Block -->
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl">
+      <div class="flex flex-col lg:flex-row">
+        <div class="lg:w-1/2 relative min-h-[280px] lg:min-h-full">
+          <img src="PS_6.jpg" alt="Project SILAW Beneficiary Outreach" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 bg-slate-950/90 text-amber-400 text-xs font-bold px-3 py-1 rounded-full border border-slate-800">
+            Project SILAW Mission
+          </span>
+        </div>
+        
+        <div class="lg:w-1/2 p-6 md:p-10 space-y-4 flex flex-col justify-center">
+          <span class="inline-block bg-slate-950 text-slate-300 border border-slate-800 text-xs px-3 py-1 rounded-full font-semibold uppercase tracking-wider w-fit">
+            Supporting • Inspiring • Learning • Wishing Big
+          </span>
+          <h3 class="text-3xl font-black text-white">Our Beneficiary Mission: Project SILAW</h3>
+          <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+            Spearheaded by <strong>JCI Candon Gold Leaf</strong>, <em>Project SILAW</em> is funded by <strong>The RUNod Ayat 2025</strong> as a community education initiative designed to help children in remote, mountainous areas transition away from heavy manual labor—such as making charcoal—and into formal schooling.
+          </p>
+          <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+            Proceeds from your registration provide crucial learning kits, school supplies, and community support so these children can dream bigger. In <strong>RUNod Ayat 2026</strong>, we are expanding this educational lifeline to reach even more mountain communities.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Impact Photo Gallery -->
+    <div class="space-y-6">
+      <div class="text-center space-y-2">
+        <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Real Impact in Photos</span>
+        <h3 class="text-2xl md:text-3xl font-black text-white">Project SILAW Outreach Gallery</h3>
+        <p class="text-xs text-slate-400 max-w-md mx-auto">Moments captured during our mountain outreach drives and educational supply distributions funded by RUNod Ayat.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg group">
+          <div class="relative overflow-hidden h-52">
+            <img src="PS_3.jpg" alt="Classroom Transition" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+          </div>
+          <div class="p-4 space-y-1">
+            <h4 class="font-bold text-white text-base">Back to School</h4>
+            <p class="text-xs text-slate-400">Children receiving complete learning packages to start their school year.</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg group">
+          <div class="relative overflow-hidden h-52">
+            <img src="PS_4.jpg" alt="Mountain Outreach" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+          </div>
+          <div class="p-4 space-y-1">
+            <h4 class="font-bold text-white text-base">Reaching Mountain Sitios</h4>
+            <p class="text-xs text-slate-400">JCI Candon Gold Leaf teams delivering aid directly to upland villages.</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg group">
+          <div class="relative overflow-hidden h-52">
+            <img src="PS_2.jpg" alt="School Supplies" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+          </div>
+          <div class="p-4 space-y-1">
+            <h4 class="font-bold text-white text-base">Learning Kits Distribution</h4>
+            <p class="text-xs text-slate-400">School supplies provided to students in need, funded by RUNod Ayat 2025.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Proceeds Allocation Grid -->
+    <div class="space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <span class="bg-slate-900 text-slate-400 border border-slate-800 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest">
+          Transparency & Allocation
+        </span>
+        <h3 class="text-3xl font-black text-white">Where Your Registration Goes</h3>
+        <p class="text-slate-400 text-sm">
+          Every step you take directly supports the education, welfare, and empowerment of young students in upland communities through JCI Candon Gold Leaf.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Allocation Item 1 -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden flex flex-col justify-between shadow-lg group">
+          <div>
+            <div class="relative h-44 overflow-hidden">
+              <img src="PS_9.png" alt="School Transition" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <span class="absolute top-3 right-3 text-xs font-bold bg-slate-950/90 text-amber-400 border border-slate-800 px-2.5 py-1 rounded-lg">
+                50% Allocation
+              </span>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center gap-2">
+                <span class="text-amber-400 font-bold">🎒</span>
+                <h4 class="text-xl font-bold text-white">School Transition</h4>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Provides complete school supplies and informative learning tools to children transitioning out of charcoal labor.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Allocation Item 2 -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden flex flex-col justify-between shadow-lg group">
+          <div>
+            <div class="relative h-44 overflow-hidden">
+              <img src="PS_5.jpg" alt="Mountain Literacy Hubs" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <span class="absolute top-3 right-3 text-xs font-bold bg-slate-950/90 text-blue-400 border border-slate-800 px-2.5 py-1 rounded-lg">
+                30% Allocation
+              </span>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center gap-2">
+                <span class="text-blue-400 font-bold">📖</span>
+                <h4 class="text-xl font-bold text-white">Mountain Literacy Hubs</h4>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Establishes community reading corners, learning modules, and mentorship programs in hard-to-reach mountainous areas.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Allocation Item 3 -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden flex flex-col justify-between shadow-lg group">
+          <div>
+            <div class="relative h-44 overflow-hidden">
+              <img src="PS_7.png" alt="Youth Health & Nutrition" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <span class="absolute top-3 right-3 text-xs font-bold bg-slate-950/90 text-slate-200 border border-slate-800 px-2.5 py-1 rounded-lg">
+                20% Allocation
+              </span>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center gap-2">
+                <span class="text-slate-300 font-bold">🍲</span>
+                <h4 class="text-xl font-bold text-white">Youth Health & Nutrition</h4>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Supports nutritional feeding drives and health checkups so young students stay healthy, focused, and present in school.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="border-slate-800/80 max-w-6xl mx-auto">
+
+  <!-- 5. PARTICIPANT SEARCH & BIB PORTAL SECTION -->
+  <section id="verify" class="max-w-2xl mx-auto px-4 py-16">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl space-y-6">
+      <div class="text-center space-y-1">
+        <span class="text-xs font-bold uppercase tracking-widest text-blue-400">Participant Self-Service Portal</span>
+        <h2 class="text-2xl font-black text-white">Find Your Bib & Status</h2>
+        <p class="text-xs text-slate-400">Enter your full name or registered email to check your entry and payment verification.</p>
+      </div>
+
+      <form id="publicSearchForm" class="space-y-3">
+        <div>
+          <input type="text" id="publicSearchInput" placeholder="Enter Full Name or Email" required
+            class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-600 focus:outline-none transition">
+        </div>
+        <button type="submit" id="publicSearchBtn" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-blue-600/20">
+          Lookup Registration
+        </button>
+      </form>
+
+      <div id="portalCard" class="hidden bg-slate-950 border border-slate-800 rounded-2xl p-5 space-y-4">
+        <div class="flex justify-between items-start border-b border-slate-800 pb-3">
+          <div>
+            <h3 id="portalName" class="text-xl font-bold text-white">---</h3>
+            <p id="portalCategory" class="text-xs text-blue-400 font-semibold">---</p>
+          </div>
+          <div class="text-right">
+            <span class="text-[10px] uppercase font-bold text-slate-400 block">Assigned Bib</span>
+            <span id="portalBib" class="text-lg font-black text-blue-400 tracking-wider">---</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 text-xs text-slate-300">
+          <div>
+            <span class="text-slate-400 block font-semibold">Shirt Size</span>
+            <span id="portalShirt" class="font-bold text-white">---</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block font-semibold">Payment Status</span>
+            <span id="portalPayment" class="font-bold">---</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block font-semibold">Kit Claimed</span>
+            <span id="portalClaimed" class="font-bold">---</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block font-semibold">Claimed Timestamp</span>
+            <span id="portalClaimedLog" class="font-bold text-slate-400">---</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="portalStatus" class="hidden text-center text-xs p-3 rounded-lg font-semibold"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-950 py-8 text-center text-xs text-slate-400">
+    <p>&copy; 2026 RUNod Ayat Charity Race x JCI Candon Gold Leaf powered by TraDigi Digital Solutions. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Tab Switcher Script for Race Categories
+    function switchCategory(cat) {
+      document.querySelectorAll('.cat-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.cat-tab').forEach(el => {
+        el.className = 'cat-tab bg-slate-900 hover:bg-slate-800 text-slate-300 font-bold px-5 py-2.5 rounded-xl text-sm border border-slate-800 transition';
+      });
+
+      document.getElementById(`content-${cat}`).classList.remove('hidden');
+      const activeTab = document.getElementById(`tab-${cat}`);
+      activeTab.className = 'cat-tab bg-blue-600 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition';
+    }
+
+    // Backend Lookup Script
+    const GOOGLE_SCRIPT_URL = "";
+
+    document.getElementById('publicSearchForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const query = document.getElementById('publicSearchInput').value.trim();
+      const searchBtn = document.getElementById('publicSearchBtn');
+
+      searchBtn.disabled = true;
+      searchBtn.textContent = "Searching Database...";
+      hidePortalStatus();
+
+      try {
+        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=search&query=${encodeURIComponent(query)}`);
+        const data = await response.json();
+
+        if (data.status === 'success' && data.runner) {
+          const r = data.runner;
+          document.getElementById('portalName').textContent = r.fullName;
+          document.getElementById('portalCategory').textContent = `${r.category} Category`;
+          document.getElementById('portalBib').textContent = r.bibNumber;
+          document.getElementById('portalShirt').textContent = r.shirtSize;
+
+          const paymentEl = document.getElementById('portalPayment');
+          paymentEl.textContent = r.paymentStatus || "PENDING";
+          paymentEl.className = r.paymentStatus === "VERIFIED" ? "font-bold text-blue-400" : "font-bold text-amber-400";
+
+          const claimedEl = document.getElementById('portalClaimed');
+          claimedEl.textContent = r.claimed ? "YES" : "NO";
+          claimedEl.className = r.claimed ? "font-bold text-blue-400" : "font-bold text-slate-400";
+          document.getElementById('portalClaimedLog').textContent = r.claimedTime || "N/A";
+
+          document.getElementById('portalCard').classList.remove('hidden');
+        } else {
+          document.getElementById('portalCard').classList.add('hidden');
+          showPortalStatus("No participant record found matching that Name or Email.", "bg-slate-900 text-slate-300 border border-slate-800");
+        }
+      } catch (err) {
+        showPortalStatus("Error querying database. Please try again later.", "bg-slate-900 text-slate-300 border border-slate-800");
+      } finally {
+        searchBtn.disabled = false;
+        searchBtn.textContent = "Lookup Registration";
+      }
+    });
+
+    function showPortalStatus(msg, classes) {
+      const el = document.getElementById('portalStatus');
+      el.className = `text-center text-xs p-3 rounded-lg font-semibold ${classes}`;
+      el.textContent = msg;
+      el.classList.remove('hidden');
+    }
+
+    function hidePortalStatus() {
+      document.getElementById('portalStatus').classList.add('hidden');
+    }
+
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+  </script>
+
+</body>
+</html>

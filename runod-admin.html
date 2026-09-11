@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RUNod Ayat 2026 - Admin Race Kit & Finisher Desk</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-4 flex justify-center items-center">
+
+  <div class="max-w-md w-full bg-slate-800 rounded-2xl shadow-2xl p-6 border border-slate-700 space-y-6">
+    <div class="text-center">
+      <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Event Organizer Desk</span>
+      <h1 class="text-2xl font-black text-white">Runner Management</h1>
+    </div>
+
+    <!-- Mode Toggle Tabs -->
+    <div class="flex bg-slate-900 p-1 rounded-xl border border-slate-700">
+      <button id="manualTabBtn" onclick="switchTab('manual')" class="w-1/2 py-2 text-xs font-bold rounded-lg bg-blue-600 text-white transition">Manual Search</button>
+      <button id="qrTabBtn" onclick="switchTab('qr')" class="w-1/2 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition">Scan QR Code</button>
+    </div>
+
+    <!-- Manual Search Form -->
+    <div id="manualSection" class="space-y-3">
+      <form id="searchForm" class="space-y-3">
+        <div>
+          <label class="block text-xs text-slate-400 font-semibold uppercase mb-1" for="searchInput">Bib Number or Name</label>
+          <input type="text" id="searchInput" placeholder="e.g. 3001 or Juan" required
+            class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+        </div>
+        <button type="submit" id="searchBtn" class="w-full bg-blue-600 hover:bg-blue-500 font-bold py-3 rounded-xl transition text-white">
+          Search Runner
+        </button>
+      </form>
+    </div>
+
+    <!-- QR Scanner Section -->
+    <div id="qrSection" class="hidden space-y-3 text-center">
+      <div id="reader" class="overflow-hidden rounded-xl border border-slate-700 bg-slate-900"></div>
+      <p class="text-xs text-slate-400">Point phone camera at runner's QR pass</p>
+    </div>
+
+    <!-- Result Card -->
+    <div id="resultCard" class="hidden bg-slate-900 border border-slate-700 rounded-xl p-4 space-y-3">
+      <div class="flex justify-between items-start">
+        <div>
+          <h2 id="runnerName" class="text-lg font-bold text-white">---</h2>
+          <p id="runnerCategory" class="text-xs text-blue-400 font-semibold">---</p>
+        </div>
+        <span id="runnerBib" class="bg-amber-500/20 text-amber-300 border border-amber-500/30 font-black px-3 py-1 rounded-lg text-sm">---</span>
+      </div>
+
+      <div class="text-xs text-slate-400 space-y-1 border-t border-slate-800 pt-3">
+        <p><strong>Shirt Size:</strong> <span id="runnerShirt" class="text-slate-200">---</span></p>
+        <p><strong>Payment Status:</strong> <span id="runnerPayment" class="text-slate-200">---</span></p>
+        <p><strong>Kit Claimed:</strong> <span id="runnerClaimed" class="text-slate-200">---</span></p>
+        <p><strong>Claimed Log:</strong> <span id="runnerLog" class="text-slate-200">---</span></p>
+        <p><strong>Finish Status:</strong> <span id="runnerFinishStatus" class="text-slate-200 font-bold">---</span></p>
+        <p><strong>Cert Status:</strong> <span id="runnerCertStatus" class="text-slate-200 font-bold">---</span></p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="space-y-2 pt-2 border-t border-slate-800">
+        <button id="claimBtn" onclick="markAsClaimed()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 rounded-lg text-sm transition">
+          Mark Kit as Claimed
+        </button>
+
+        <button id="finishBtn" onclick="markAsFinished()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-lg text-sm transition">
+          Mark Runner as Finisher
+        </button>
+      </div>
+    </div>
+
+    <div id="adminStatus" class="hidden text-center text-xs p-3 rounded-lg font-semibold"></div>
+  </div>
+
+  <script>
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxEUrSXOyRpztRA8mPvI8Wzcj0VLydf7XYQeuqZEuX8Tjn5u3dYhZ3b9RZuT8SNubiorg/exec";
+    let activeBib = "";
+    let html5QrcodeScanner = null;
+
+    function switchTab(tab) {
+      if (tab === 'manual') {
+        document.getElementById('manualSection').classList.remove('hidden');
+        document.getElementById('qrSection').classList.add('hidden');
+        document.getElementById('manualTabBtn').className = "w-1/2 py-2 text-xs font-bold rounded-lg bg-blue-600 text-white transition";
+        document.getElementById('qrTabBtn').className = "w-1/2 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition";
+        if (html5QrcodeScanner) html5QrcodeScanner.clear();
+      } else {
+        document.getElementById('manualSection').classList.add('hidden');
+        document.getElementById('qrSection').classList.remove('hidden');
+        document.getElementById('qrTabBtn').className = "w-1/2 py-2 text-xs font-bold rounded-lg bg-blue-600 text-white transition";
+        document.getElementById('manualTabBtn').className = "w-1/2 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition";
+        startQrScanner();
+      }
+    }
+
+    function startQrScanner() {
+      html5QrcodeScanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: { width: 220, height: 220 } });
+      html5QrcodeScanner.render((scannedText) => {
+        html5QrcodeScanner.clear();
+        document.getElementById('searchInput').value = scannedText;
+        searchRunner(scannedText);
+      });
+    }
+
+    document.getElementById('searchForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      searchRunner(document.getElementById('searchInput').value.trim());
+    });
+
+    async function searchRunner(query) {
+      const searchBtn = document.getElementById('searchBtn');
+      searchBtn.disabled = true;
+      searchBtn.textContent = "Searching...";
+      hideStatus();
+
+      try {
+        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=search&query=${encodeURIComponent(query)}`);
+        const data = await response.json();
+
+        if (data.status === 'success' && data.runner) {
+          const r = data.runner;
+          activeBib = r.bibNumber;
+          document.getElementById('runnerName').textContent = r.fullName;
+          document.getElementById('runnerCategory').textContent = `${r.category} Category`;
+          document.getElementById('runnerBib').textContent = r.bibNumber;
+          document.getElementById('runnerShirt').textContent = r.shirtSize;
+          document.getElementById('runnerPayment').textContent = r.paymentStatus;
+          
+          if (r.claimed) {
+            document.getElementById('runnerClaimed').textContent = "YES";
+            document.getElementById('runnerLog').textContent = r.claimedTime || "Already Claimed";
+            document.getElementById('claimBtn').textContent = "Kit Already Claimed";
+            document.getElementById('claimBtn').className = "w-full bg-slate-700 text-slate-400 font-bold py-2.5 rounded-lg text-sm cursor-not-allowed";
+            document.getElementById('claimBtn').disabled = true;
+          } else {
+            document.getElementById('runnerClaimed').textContent = "NO";
+            document.getElementById('runnerLog').textContent = "Pending";
+            document.getElementById('claimBtn').textContent = "Mark Kit as Claimed";
+            document.getElementById('claimBtn').className = "w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 rounded-lg text-sm transition";
+            document.getElementById('claimBtn').disabled = false;
+          }
+
+          document.getElementById('runnerFinishStatus').textContent = r.finishStatus || "Pending";
+          document.getElementById('runnerCertStatus').textContent = r.certStatus || "Pending";
+
+          if (r.finishStatus === "Finished") {
+            document.getElementById('finishBtn').textContent = "Already Finished";
+            document.getElementById('finishBtn').className = "w-full bg-slate-700 text-slate-400 font-bold py-2.5 rounded-lg text-sm cursor-not-allowed";
+            document.getElementById('finishBtn').disabled = true;
+          } else {
+            document.getElementById('finishBtn').textContent = "Mark Runner as Finisher";
+            document.getElementById('finishBtn').className = "w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-lg text-sm transition";
+            document.getElementById('finishBtn').disabled = false;
+          }
+
+          document.getElementById('resultCard').classList.remove('hidden');
+        } else {
+          document.getElementById('resultCard').classList.add('hidden');
+          showStatus("No matching runner found.", "bg-red-500/20 text-red-300 border border-red-500/30");
+        }
+      } catch (err) {
+        showStatus("Error communicating with server.", "bg-red-500/20 text-red-300 border border-red-500/30");
+      } finally {
+        searchBtn.disabled = false;
+        searchBtn.textContent = "Search Runner";
+      }
+    }
+
+    async function markAsClaimed() {
+      if (!activeBib) return;
+      
+      const claimBtn = document.getElementById('claimBtn');
+      claimBtn.disabled = true;
+      claimBtn.textContent = "Updating...";
+
+      try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: "claim", bibNumber: activeBib })
+        });
+        
+        const res = await response.json();
+
+        if (res.status === 'success') {
+          document.getElementById('runnerClaimed').textContent = "YES";
+          document.getElementById('runnerLog').textContent = res.claimedTime;
+
+          claimBtn.textContent = "Kit Already Claimed";
+          claimBtn.className = "w-full bg-slate-700 text-slate-400 font-bold py-2.5 rounded-lg text-sm cursor-not-allowed";
+
+          showStatus(`Kit claimed at ${res.claimedTime}!`, "bg-green-500/20 text-green-300 border border-green-500/30");
+        } else {
+          throw new Error(res.message);
+        }
+      } catch (err) {
+        showStatus(err.message || "Failed to mark as claimed.", "bg-red-500/20 text-red-300 border border-red-500/30");
+        claimBtn.disabled = false;
+        claimBtn.textContent = "Mark Kit as Claimed";
+      }
+    }
+
+    async function markAsFinished() {
+      if (!activeBib) return;
+
+      const finishBtn = document.getElementById('finishBtn');
+      finishBtn.disabled = true;
+      finishBtn.textContent = "Processing Finisher...";
+
+      try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: "finish", bibNumber: activeBib })
+        });
+
+        const res = await response.json();
+
+        if (res.status === 'success') {
+          document.getElementById('runnerFinishStatus').textContent = "Finished";
+          document.getElementById('runnerCertStatus').textContent = "Sent";
+
+          finishBtn.textContent = "Already Finished";
+          finishBtn.className = "w-full bg-slate-700 text-slate-400 font-bold py-2.5 rounded-lg text-sm cursor-not-allowed";
+
+          showStatus("Runner marked as Finished & E-Certificate sent!", "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30");
+        } else {
+          throw new Error(res.message);
+        }
+      } catch (err) {
+        showStatus(err.message || "Failed to process finisher status.", "bg-red-500/20 text-red-300 border border-red-500/30");
+        finishBtn.disabled = false;
+        finishBtn.textContent = "Mark Runner as Finisher";
+      }
+    }
+
+    function showStatus(msg, classes) {
+      const el = document.getElementById('adminStatus');
+      el.className = `text-center text-xs p-3 rounded-lg font-semibold ${classes}`;
+      el.textContent = msg;
+      el.classList.remove('hidden');
+    }
+
+    function hideStatus() {
+      document.getElementById('adminStatus').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
