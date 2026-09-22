@@ -25,8 +25,8 @@
     <div id="manualSection" class="space-y-3">
       <form id="searchForm" class="space-y-3">
         <div>
-          <label class="block text-xs text-slate-400 font-semibold uppercase mb-1" for="searchInput">Bib Number or Name</label>
-          <input type="text" id="searchInput" placeholder="e.g. 3001 or Juan" required
+          <label class="block text-xs text-slate-400 font-semibold uppercase mb-1" for="searchInput">Bib, Full Name, or Nickname</label>
+          <input type="text" id="searchInput" placeholder="e.g. 3001, Juan, or Nards" required
             class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
         </div>
         <button type="submit" id="searchBtn" class="w-full bg-blue-600 hover:bg-blue-500 font-bold py-3 rounded-xl transition text-white">
@@ -46,7 +46,8 @@
       <div class="flex justify-between items-start">
         <div>
           <h2 id="runnerName" class="text-lg font-bold text-white">---</h2>
-          <p id="runnerCategory" class="text-xs text-blue-400 font-semibold">---</p>
+          <p id="runnerNickname" class="text-xs text-amber-400 font-medium">Nickname: <span class="text-slate-200">---</span></p>
+          <p id="runnerCategory" class="text-xs text-blue-400 font-semibold mt-0.5">---</p>
         </div>
         <span id="runnerBib" class="bg-amber-500/20 text-amber-300 border border-amber-500/30 font-black px-3 py-1 rounded-lg text-sm">---</span>
       </div>
@@ -76,7 +77,8 @@
   </div>
 
   <script>
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxEUrSXOyRpztRA8mPvI8Wzcj0VLydf7XYQeuqZEuX8Tjn5u3dYhZ3b9RZuT8SNubiorg/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwFZoZTKxd-npzMfuqsAyL5V0bEJP8HlDRBtLSozzWnf43_U8hBdMBlBrnePDVJnfHW/exec";
+
     let activeBib = "";
     let html5QrcodeScanner = null;
 
@@ -124,6 +126,7 @@
           const r = data.runner;
           activeBib = r.bibNumber;
           document.getElementById('runnerName').textContent = r.fullName;
+          document.querySelector('#runnerNickname span').textContent = r.nickname || "None";
           document.getElementById('runnerCategory').textContent = `${r.category} Category`;
           document.getElementById('runnerBib').textContent = r.bibNumber;
           document.getElementById('runnerShirt').textContent = r.shirtSize;
