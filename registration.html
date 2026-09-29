@@ -94,6 +94,11 @@
             <input type="tel" id="phone" required placeholder="09171234567"
               class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm">
           </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1" for="club">Run Club / Organization <span class="text-slate-500 font-normal">(Optional)</span></label>
+            <input type="text" id="club" placeholder="e.g. Candon Running Community"
+              class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm">
+          </div>
 
           <div class="md:col-span-2 space-y-3">
             <label class="block text-xs font-semibold text-slate-300" for="shirtSize">Singlet / Shirt Size</label>
@@ -226,7 +231,7 @@
           <p class="text-xs font-semibold uppercase tracking-wider text-amber-400">Scan or Transfer to Bank Account</p>
           <img src="bankqr.jpg" alt="Bank QR Code" class="mx-auto rounded-lg shadow-sm border border-slate-700">
           <div class="text-xs text-slate-300">
-             <p><strong>Bank:</strong> Maribank</p>
+            <p><strong>Bank:</strong> Maribank</p>
             <p><strong>Account Name:</strong> Christ Archer Sanchez</p>
             <p><strong>Account Number:</strong> 10129972765</p>
           </div>
@@ -279,7 +284,7 @@
   </div>
 
   <script>
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwFZoZTKxd-npzMfuqsAyL5V0bEJP8HlDRBtLSozzWnf43_U8hBdMBlBrnePDVJnfHW/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyQGSKkoZIQTSKxyuxIPwZ02YgtYPNU6QQh2jPRnDBLgw8_e2hz7MlUDX1nhEFDgvAV/exec";
    // Set Race Target Date
 
     const raceDate = new Date("December 12, 2026 00:00:00").getTime();
@@ -350,6 +355,7 @@
           nickname: document.getElementById('nickname').value.trim(),
           email: document.getElementById('email').value.trim(),
           phone: document.getElementById('phone').value.trim(),
+          club: document.getElementById('club').value.trim(),
           shirtSize: document.getElementById('shirtSize').value,
           emergencyName: document.getElementById('emergencyName').value.trim(),
           emergencyPhone: document.getElementById('emergencyPhone').value.trim(),
