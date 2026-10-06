@@ -152,14 +152,15 @@
 
       <!-- 3. Distance Category -->
       <div>
-        <h2 class="text-base font-bold text-blue-400 mb-4 border-b border-slate-700 pb-2 uppercase tracking-wider">3. Select Distance Category</h2>
+        <h2 class="text-base font-bold text-blue-400 mb-4 border-b border-slate-700 pb-2 uppercase tracking-wider">3. Select Distance Category<span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase ml-2">Early Bird Promo</span></h2>
         <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
           <label class="relative bg-slate-900 border rounded-xl p-4 flex flex-col items-center justify-between cursor-pointer hover:border-blue-500 transition border-slate-700">
             <input type="radio" name="category" value="3K" class="sr-only peer" required>
             <div class="absolute inset-0 border-2 border-transparent peer-checked:border-blue-500 rounded-xl pointer-events-none"></div>
             <span class="text-xl font-bold text-white">3K</span>
             <span class="text-[10px] text-slate-400 mt-1">Fun Run / Walk</span>
-            <span class="text-amber-400 font-extrabold mt-3">₱699.00</span>
+            <span class="text-slate-500 line-through font-bold mt-1">₱699.00</span>
+            <span class="text-amber-400 font-extrabold mt-3">₱599.00</span>
           </label>
 
           <label class="relative bg-slate-900 border rounded-xl p-4 flex flex-col items-center justify-between cursor-pointer hover:border-blue-500 transition border-slate-700">
@@ -167,7 +168,8 @@
             <div class="absolute inset-0 border-2 border-transparent peer-checked:border-blue-500 rounded-xl pointer-events-none"></div>
             <span class="text-xl font-bold text-white">5K</span>
             <span class="text-[10px] text-slate-400 mt-1">Fitness Dash</span>
-            <span class="text-amber-400 font-extrabold mt-3">₱799.00</span>
+            <span class="text-slate-500 line-through font-bold mt-1">₱799.00</span>
+            <span class="text-amber-400 font-extrabold mt-3">₱699.00</span>
           </label>
 
           <label class="relative bg-slate-900 border rounded-xl p-4 flex flex-col items-center justify-between cursor-pointer hover:border-blue-500 transition border-slate-700">
@@ -175,7 +177,8 @@
             <div class="absolute inset-0 border-2 border-transparent peer-checked:border-blue-500 rounded-xl pointer-events-none"></div>
             <span class="text-xl font-bold text-white">10K</span>
             <span class="text-[10px] text-slate-400 mt-1">Challenge Run</span>
-            <span class="text-amber-400 font-extrabold mt-3">₱999.00</span>
+            <span class="text-slate-500 line-through font-bold mt-1">₱999.00</span>
+            <span class="text-amber-400 font-extrabold mt-3">₱899.00</span>
           </label>
 
           <label class="relative bg-slate-900 border rounded-xl p-4 flex flex-col items-center justify-between cursor-pointer hover:border-blue-500 transition border-slate-700">
@@ -183,7 +186,8 @@
             <div class="absolute inset-0 border-2 border-transparent peer-checked:border-blue-500 rounded-xl pointer-events-none"></div>
             <span class="text-xl font-bold text-white">21K</span>
             <span class="text-[10px] text-slate-400 mt-1 text-center">Half Marathon</span>
-            <span class="text-amber-400 font-extrabold mt-3">₱1,699.00</span>
+            <span class="text-slate-500 line-through font-bold mt-1">₱1,699.00</span>
+            <span class="text-amber-400 font-extrabold mt-3">₱1,599.00</span>
           </label>
         </div>
       </div>
@@ -274,8 +278,8 @@
   </div>
 
   <script>
-     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxAzJi7L_Lg4ifAgRa4CzQdgMjUhyMfFjmTtDNhoTq8SOxSQmn-bRqUzl95eknm7gwY/exec";
- // Set Race Target Date
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxAzJi7L_Lg4ifAgRa4CzQdgMjUhyMfFjmTtDNhoTq8SOxSQmn-bRqUzl95eknm7gwY/exec";
+   // Set Race Target Date
 
     const raceDate = new Date("December 12, 2026 00:00:00").getTime();
     
