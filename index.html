@@ -658,6 +658,17 @@
         searchBtn.textContent = "Lookup Registration";
       }
     });
+
+    function showPortalStatus(msg, classes) {
+      const el = document.getElementById('portalStatus');
+      el.className = `text-center text-xs p-3 rounded-lg font-semibold ${classes}`;
+      el.textContent = msg;
+      el.classList.remove('hidden');
+    }
+
+    function hidePortalStatus() {
+      document.getElementById('portalStatus').classList.add('hidden');
+    }
   </script>
 
 </body>
