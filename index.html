@@ -539,43 +539,61 @@
   <hr class="border-slate-800/80 max-w-6xl mx-auto">
 
   <!-- 5. PARTICIPANT SEARCH & BIB PORTAL SECTION -->
+  <!-- 5. PARTICIPANT SEARCH & BIB PORTAL SECTION -->
   <section id="verify" class="max-w-2xl mx-auto px-4 py-16">
     <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl space-y-6">
       <div class="text-center space-y-1">
         <span class="text-xs font-bold uppercase tracking-widest text-blue-400">Participant Self-Service Portal</span>
         <h2 class="text-2xl font-black text-white">Find Your Bib & Status</h2>
-        <p class="text-xs text-slate-400">Enter your full name or registered email to check your entry and payment verification.</p>
+        <p class="text-xs text-slate-400">Enter your Bib Number, Full Name, or Nickname to check your entry and payment verification.</p>
       </div>
 
       <form id="publicSearchForm" class="space-y-3">
         <div>
-          <input type="text" id="publicSearchInput" placeholder="Enter Full Name or Email"
-            class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-500 opacity-60 ">
+          <input type="text" id="publicSearchInput" placeholder="e.g. 3001, Juan, or Nards" required
+            class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-600 focus:outline-none transition">
         </div>
         <button type="submit" id="publicSearchBtn" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-blue-600/20">
           Lookup Registration
         </button>
       </form>
+
+      <div id="portalCard" class="hidden bg-slate-950 border border-slate-800 rounded-2xl p-5 space-y-4">
+        <div class="flex justify-between items-start border-b border-slate-800 pb-3">
+          <div>
+            <h3 id="portalName" class="text-xl font-bold text-white">---</h3>
+            <p id="portalNickname" class="text-xs text-amber-400 font-medium mt-0.5">Nickname: <span class="text-slate-200">---</span></p>
+            <p id="portalCategory" class="text-xs text-blue-400 font-semibold mt-1">---</p>
+          </div>
+          <div class="text-right">
+            <span class="text-[10px] uppercase font-bold text-slate-400 block">Assigned Bib</span>
+            <span id="portalBib" class="text-lg font-black text-blue-400 tracking-wider">---</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 text-xs text-slate-300">
+          <div>
+            <span class="text-slate-400 block font-semibold">Shirt Size</span>
+            <span id="portalShirt" class="font-bold text-white">---</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block font-semibold">Payment Status</span>
+            <span id="portalPayment" class="font-bold">---</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block font-semibold">Kit Claimed</span>
+            <span id="portalClaimed" class="font-bold">---</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block font-semibold">Claimed Timestamp</span>
+            <span id="portalClaimedLog" class="font-bold text-slate-400">---</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="portalStatus" class="hidden text-center text-xs p-3 rounded-lg font-semibold"></div>
     </div>
   </section>
-
-  <!-- ANNOUNCEMENT MODAL -->
-  <div id="announcementModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm hidden">
-    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 max-w-md w-full mx-4 shadow-2xl text-center space-y-5 animate-in fade-in zoom-in duration-200">
-      <div class="w-12 h-12 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-2xl mx-auto flex items-center justify-center text-xl font-bold">
-        📢
-      </div>
-      <div class="space-y-2">
-        <h3 class="text-xl font-black text-white">Registration is Now Closed!</h3>
-        <p class="text-sm text-slate-300 leading-relaxed">
-          Online registration for RUNod Ayat 2026 has officially ended as we’ve hit the deadline. A massive thank you to everyone who registered! If you’ve already secured your spot, keep an eye out for bib and race kit distribution announcements.
-        </p>
-      </div>
-      <button onclick="closeAnnouncementModal()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-blue-600/20">
-        Got it
-      </button>
-    </div>
-  </div>
 
   <!-- Footer -->
   <footer class="border-t border-slate-800 bg-slate-950 py-8 text-center text-xs text-slate-400">
