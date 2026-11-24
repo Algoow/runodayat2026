@@ -41,7 +41,7 @@
         <a href="#categories" class="text-slate-300 hover:text-white transition">2026 Race Categories & Kits</a>
         <a href="#stats-2025" class="text-slate-300 hover:text-white transition">2025 Recap</a>
         <a href="#proceeds" class="text-slate-300 hover:text-white transition">Proceeds & Mission</a>
-        <a href="#verify" onclick="openAnnouncementModal(event)" class="text-slate-300 hover:text-white transition cursor-pointer">Verify Bib</a>
+        <a href="#verify" class="text-slate-300 hover:text-white transition cursor-pointer">Verify Bib</a>
         <a href="#" onclick="openAnnouncementModal(event)" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-xl font-bold transition shadow-lg shadow-blue-600/20 cursor-pointer">Register Now</a>
       </div>
 
@@ -610,6 +610,53 @@
 
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxAzJi7L_Lg4ifAgRa4CzQdgMjUhyMfFjmTtDNhoTq8SOxSQmn-bRqUzl95eknm7gwY/exec";
+    // Backend Lookup Script
+    
+    document.getElementById('publicSearchForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const query = document.getElementById('publicSearchInput').value.trim();
+      const searchBtn = document.getElementById('publicSearchBtn');
+
+      searchBtn.disabled = true;
+      searchBtn.textContent = "Searching Database...";
+      hidePortalStatus();
+
+      try {
+        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=search&query=${encodeURIComponent(query)}`);
+        const data = await response.json();
+
+        if (data.status === 'success' && data.runner) {
+          const r = data.runner;
+          document.getElementById('portalName').textContent = r.fullName;
+          document.querySelector('#portalNickname span').textContent = r.nickname || "None";
+          document.getElementById('portalCategory').textContent = `${r.category} Category`;
+          document.getElementById('portalBib').textContent = r.bibNumber;
+          document.getElementById('portalShirt').textContent = r.shirtSize;
+
+          const paymentEl = document.getElementById('portalPayment');
+          paymentEl.textContent = r.paymentStatus || "PENDING";
+          paymentEl.className = r.paymentStatus === "VERIFIED" ? "font-bold text-blue-400" : "font-bold text-amber-400";
+
+          const claimedEl = document.getElementById('portalClaimed');
+          claimedEl.textContent = r.claimed ? "YES" : "NO";
+          claimedEl.className = r.claimed ? "font-bold text-blue-400" : "font-bold text-slate-400";
+          document.getElementById('portalClaimedLog').textContent = r.claimedTime || "N/A";
+
+          document.getElementById('portalCard').classList.remove('hidden');
+        } else {
+          document.getElementById('portalCard').classList.add('hidden');
+          showPortalStatus("No participant record found matching that Bib, Name, or Nickname.", "bg-slate-900 text-slate-300 border border-slate-800");
+        }
+      } catch (err) {
+        showPortalStatus("Error querying database. Please try again later.", "bg-slate-900 text-slate-300 border border-slate-800");
+      } finally {
+        searchBtn.disabled = false;
+        searchBtn.textContent = "Lookup Registration";
+      }
     });
   </script>
 
