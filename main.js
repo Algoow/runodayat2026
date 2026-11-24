@@ -78,6 +78,7 @@
       link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
     });
 
+// For No-Reg Announcement when Noreg-Noverif.html/Noregwithverif is active
 function openAnnouncementModal(e) {
       if (e) e.preventDefault();
       document.getElementById('announcementModal').classList.remove('hidden');
