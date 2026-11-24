@@ -77,3 +77,19 @@
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
     });
+
+function openAnnouncementModal(e) {
+      if (e) e.preventDefault();
+      document.getElementById('announcementModal').classList.remove('hidden');
+    }
+
+    function closeAnnouncementModal() {
+      document.getElementById('announcementModal').classList.add('hidden');
+    }
+
+    // Close modal on background click
+    document.getElementById('announcementModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('announcementModal')) {
+        closeAnnouncementModal();
+      }
+    });
