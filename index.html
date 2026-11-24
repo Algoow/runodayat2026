@@ -602,21 +602,7 @@
 
   <script>
     // Modal Control Scripts
-    function openAnnouncementModal(e) {
-      if (e) e.preventDefault();
-      document.getElementById('announcementModal').classList.remove('hidden');
-    }
-
-    function closeAnnouncementModal() {
-      document.getElementById('announcementModal').classList.add('hidden');
-    }
-
-    // Close modal on background click
-    document.getElementById('announcementModal').addEventListener('click', (e) => {
-      if (e.target === document.getElementById('announcementModal')) {
-        closeAnnouncementModal();
-      }
-    });
+ 
 
     // Mobile Menu Toggle
     const menuBtn = document.getElementById('mobile-menu-btn');
